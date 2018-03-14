@@ -1,0 +1,44 @@
+﻿@model blog.Models.AccountVM.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="ui main avatar image image-custom" >
+            <img class="lazy"src="@Model.ImageUser" style="width:8em;height:8em">
+        </div>
+        <div class="form-group" style="margin:1em auto">
+            @Html.LabelFor(model => model.DisplayName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2 col-md-10">
+            <input type="file" id="post.Image" name="file" accept="image/*">
+        </div>
+
+        <div class="col-md-2 col-md-10">
+            <div id="button-upload">
+                <input type="submit" value="Save" class="ui circular large teal submit button" style="margin-top:1em" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myJavaScript")
+}

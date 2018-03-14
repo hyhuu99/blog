@@ -1,0 +1,42 @@
+﻿@model blog.Models.PostVM.PostDetailVM
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <h1 class="ui teal header" style="font-size:2.5rem">
+        <strong>@Model.Title</strong>
+    </h1>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(Model => Model.PostId)
+        <div class="tag" style="height:1em">          
+                <ul class="list-inline">
+                    @Html.Partial("~/Views/Tags/_tagPartial.cshtml", Model.ListTag.ToList())
+                </ul>
+        </div>
+    @if (Model.IsMySelf)
+    {
+            @Html.ActionLink(
+            "Delete",
+            "Delete","Posts",new { id = Model.PostId, slug = Model.Slug },
+            new { onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "ui primary button" , @style = "float:right" }) 
+        @Html.ActionLink("Edit", "Edit", "Posts", new { id = Model.PostId, slug = Model.Slug }, htmlAttributes: new { @class = "ui button", @style = "float: right" })
+    }
+    <div class="published">
+        <p class="date">@Model.AuthorName Posted on: @Model.CreateDate</p>
+    </div>
+    <hr />
+    <div class="content">
+        <img class="imagedetail" src="@Model.Image" />
+        @Html.Raw(Model.BlogContent)
+    </div>
+    </div>
+
+    
+@{Model.Image = null;Model.BlogContent = null;Model.AuthorName = null;Model.ListTag = null;Model.Title = null;Model.Slug = null;Model.CreateDate = null;}
+@{Html.RenderAction("CommentPartial","Comments",Model);}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myJavaScript")
+
+}

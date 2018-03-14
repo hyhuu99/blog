@@ -1,0 +1,222 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 80%;
+}
+.widget {
+    margin-left: 29.04761904%;
+    width: 29.04761904%;
+}
+#meta-tag {
+    margin-top: 1em;
+    clear: both;
+    border-top: 1px solid;
+}
+.suggest-title {
+    padding-top:1em;
+    font-family: "OpenSans", sans-serif;
+    font-size: 1.05em;
+    font-style: italic;
+}
+.ui.basic.button {
+    font-family: "OpenSans",sans-serif;
+    float: right;
+    font-size: .9em;
+    margin: .8em 1.5em .8em 1.2em;
+}
+.ui.green.button {
+    font-family: "OpenSans",sans-serif;
+    float: right;
+    font-size: .9em;
+    margin: .8em 1.5em .8em 1.2em;
+}
+#text-index {
+    font-weight: 800;
+    color:#FFFFFF;
+}
+#ui-label {
+    font-size: 1.3rem;
+    text-transform: none;
+}
+.caption {
+    font-family: "OpenSans", sans-serif;
+    margin: 1.33em 1.5em;
+    color: rgba(0,0,0,0.6);
+    font-size: .9em;
+    line-height: 1.7em;
+}
+#ui-menu {
+    padding: 0.83em 0.95em;
+}
+#text-descri {
+    color: white;
+}
+
+#ui-input {
+    border: none;
+    width: 100%;
+}
+#tag-input {
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    padding-right:0.2em;
+}
+.header {
+    font-size: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    color: #00b5ad;
+}
+.container-custom {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+#homeshortcontent {
+    text-decoration: none;
+}
+.ui.label {
+    text-transform: none;
+}
+#button-upload {
+    margin: 1em 1em 1em 1em;
+    text-transform: none;
+    text-align: right;
+}
+#footer-last{
+    padding:10em 0em 0em 0em;
+}
+.token-input-list {
+    font-family: "OpenSans", sans-serif;
+    margin: 0;
+    padding: .3em 0;
+    overflow: hidden;
+    list-style-type: none;
+    clear: left;
+    border: none;
+}
+.ul.token-input-list {
+    font-family: "OpenSans", sans-serif;
+    margin: 0;
+    padding: .3em 0;
+    overflow: hidden;
+    list-style-type: none;
+    clear: left;
+    border: none;
+    -webkit-border-radius: 0.3125em;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 0.3125em;
+    -moz-background-clip: padding;
+    border-radius: 0.3125em;
+    background-clip: padding-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+.image-index {
+    display: block;
+    float: left;
+    margin-top: .3em;
+    margin-right: 1em;
+}
+#tag-index {
+    font-family: "OpenSans", sans-serif;
+    display: inline-block;
+    height:1.2em;
+}
+
+.published {
+    margin: 1em 0;
+}
+a.my-class {
+    color: #00b5ad;
+    text-decoration: none;
+}
+a.avatar {
+    margin: .5em 0 0 0;
+}
+.avartar-image {
+    margin: 0em 0.5em auto;
+    width: 3em;
+    height: 3em;
+    border-radius: 500px;
+    float:left
+}
+.metadata {
+    display: inline-block;
+    margin-left: 0.3em;
+    color: rgba(0,0,0,0.4);
+}
+.comment {
+    position: relative;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+.cmts-area {
+    width: 100%;
+    min-height: 4em;
+    max-height: 10000em;
+    padding: .65em 1em;
+    margin: 0 0 .3em 0;
+    font-size: 1em;
+    border: 1px solid rgba(0,0,0,0.15);
+    outline: 0;
+    resize: none;
+    color: rgba(0,0,0,0.7);
+    -webkit-border-radius: 0.3125em;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 0.3125em;
+    -moz-background-clip: padding;
+    border-radius: 0.3125em;
+    background-clip: padding-box;
+    -webkit-transition: height 0.1s;
+    -moz-transition: height 0.1s;
+    -o-transition: height 0.1s;
+    transition: height 0.1s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: .65em 3em .65em 1em;
+    margin-top: 2.5rem;
+}
+#comment-button {
+    font-family: "OpenSans",sans-serif;
+    font-size: .9em;
+    margin: .8em 1em .8em 1em;
+    text-transform: none;
+    float: left;
+}
+.imagedeatail{
+    float: right;
+}
+.ui.avatar.image.image-custom {
+    margin-left: 5em;
+    display: inline-block;
+    width: 8em;
+    height: 8em;
+    border-radius: 500rem;
+}
+#dropdown-menu {
+    min-width: 9.4em;
+    padding: 10px 0;
+}

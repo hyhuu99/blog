@@ -1,0 +1,55 @@
+﻿@model blog.Models.PostVM.PostCreateVM
+
+@{
+    ViewBag.Title = "Create";
+}
+@{
+    Layout = "~/Views/Shared/_Layout_Post.cshtml";
+}
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm("Create", "Posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+   @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="ui fluid huge icon input" style="padding-top:2em"> 
+            <input class="col-md-2" id="ui-input" autocomplete="off" autofocus="autofocus" name="post.Title" placeholder="Title" spellcheck="false" type="text" >
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="ui fluid icon input">
+            <ul class="token-input-list list-inline" id="detail">
+                <li class="token-input-input-token">
+                    <input class="col-md-2" type="text" autocomplete="off" autocapitalize="off" id="tag-input" style="outline: none; width: 80%;" placeholder="Tag">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+        <div class="field" style="margin-top:1em">
+            <div class="col-md-10">
+                @Html.TextArea("post.BlogContent", new { id = "textcontent", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BlogContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+            <div class="col-md-2 col-md-10">
+                <input type="file" id="post.Image" name="file" accept="image/*">             
+            </div>
+              
+           <div class="col-md-2 col-md-10">
+                <div id="button-upload">
+                    <input type="submit" value="Create" class="ui circular large teal submit button" style="margin-top:1em" />
+                </div>
+        </div>
+}
+@section Scripts {
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myJavaScript")
+    <script type="text/javascript">
+    CKEDITOR.replace("textcontent");
+    </script>  
+}

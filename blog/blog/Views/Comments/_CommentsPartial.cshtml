@@ -1,0 +1,21 @@
+﻿@model blog.Models.CommentVM
+<div class="comment" id="comment_@Model.ID">
+    <a class="avatar" href="">
+        <img class="avartar-image" src="@Model.ImageUser">
+    </a>
+    @Html.Hidden("CommentId",Model.ID)
+    <div class="content">
+        <a class="author" href="">@Model.DisplayName</a>
+        <div class="metadata">
+            <span class="date">@Model.CreateDate</span>
+        </div>
+        @if (Model.IsMySelf)
+        {           
+            <button class="ui primary button delete-comment-button" id="delete-comment-button" new { onclick = "return confirm('Are you sure you wish to delete this post?');" value="@Model.ID">Delete</button>
+        }
+        <div class="text cmts-md ng-binding">
+            <p>@Model.CommentContent</p>
+        </div>
+
+    </div>
+</div>

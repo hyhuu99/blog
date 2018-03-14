@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<blog.Models.PostVM.PostIndexVM>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="new-post">
+        <h4 class="caption">
+            <i class="small quote left icon"></i>
+            <span class="content">
+                Perfection [in design] is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+            </span>
+            <i class="small quote right icon"></i>
+            <span class="author">
+                —
+                Antoine de Saint-Exupéry
+            </span>
+        </h4>
+    </div>
+    @foreach (var item in Model)
+    {
+        
+        <div class="content">
+            <!-- Item -->
+            <div class="container-custom">
+                   
+                        <img src="@item.ImageUser" class="ui main avatar image" style="float:left;margin-top:0.8em;width:3em;height:3em"/>
+                    <div class="header">
+                        @Html.ActionLink(@item.Title, "Details", "Posts", new {  id=item.PostId,slug = item.Slug }, htmlAttributes: new { @class = "my-class" })
+                        <div class="tag" >
+                            <ul class="list-inline">
+                                @Html.Partial("~/Views/Tags/_tagPartial.cshtml", item.ListTag.ToList())
+                            </ul>
+                        </div>
+                    </div>
+                    
+
+                <div id="content"><p>@item.Description</p> </div>
+                <span>Author:
+                <a href=@Url.Action("PersonalPage","Posts",new {id=item.UserId,slug=0 }) class="my-class">
+                    @item.AuthorName
+                </a>
+                @item.CreateDate</span>
+
+            </div>
+        </div>
+    }
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="text-right">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page }))
+    </div>
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myJavaScript")
+}
+
+

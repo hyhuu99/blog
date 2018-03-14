@@ -1,0 +1,37 @@
+﻿@model List<blog.Models.CommentVM>
+    <div class="col-md-12 comment" >
+            <div class="ui huge ribbon label">
+                Comments
+            </div>
+        @{ int flag = 0;}
+            @foreach (var item in Model)
+            {
+               @Html.Partial("_CommentsPartial",item)
+                flag= @item.ID;
+            }
+
+        <div class="content">        
+            @using (Ajax.BeginForm("Create", "Comments", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.InsertAfter,
+                UpdateTargetId = "comment_"+flag
+            }))
+            {
+                if (Request.IsAuthenticated)
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("PostId", Model[0].PostId)
+                    @Html.TextArea("CommentContent", htmlAttributes: new { @class = "cmts-area", @placeholder = "Comment", @id = "CommentContent" })
+                    <div style="margin:0.5em">
+                        <input type="submit" value="Send" class="ui mini button green submit" id="comment-button">
+                    </div>
+                    @Html.ValidationMessageFor(Model => Model[0].CommentContent, "", new { @class = "text-danger" })
+                }
+            }
+        </div>
+    </div>
+
+
+
+

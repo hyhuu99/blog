@@ -1,0 +1,31 @@
+﻿@model List<blog.Models.TagVM>
+
+    <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+            <div class="input-group">
+                @Html.TextBox("search",null,new {@class="form-control", @placeholder = "Search for..." ,@id= "txtSearch",@style="width:25em"})
+            </div>
+        </div>
+    </div>
+
+
+<div class="card my-4">
+    <div class="card-body" id="meta-tag">
+        <p class="suggest-title">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            Popular Tags
+        </p>
+        @foreach (var item in Model)
+        {
+            <a href=@Url.Action("Details","Tags",new { id= item.TagId,slug=item.SlugTag}) class="ui label" id="ui-label" style="height:1.9em; margin:0.5em 0.2em 0.5em 0.2em">
+                @item.Name
+                <strong>
+                    @item.Frequency
+                </strong>
+            </a>
+        }
+    </div>
+</div>
+
+

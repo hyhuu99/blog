@@ -1,0 +1,51 @@
+﻿@model PagedList.IPagedList<blog.Models.PostVM.PostIndexVM>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Tag";
+}
+<div class="row">
+    <div class="new-post">
+        <h4 class="caption" style="font-size:2em">
+            <span>
+                <i class="fa fa-hashtag" aria-hidden="true"></i>
+                @ViewBag.NameTag
+            </span>
+            
+        </h4>
+    </div>
+    @foreach (var item in Model)
+    {
+
+        <div class="content">
+            <!-- Item -->
+            <div class="container-custom">
+
+                <img src="@item.ImageUser" class="ui main avatar image" style="float:left;margin-top:0.8em;width:3em;height:3em" />
+                <div class="header">
+                    @Html.ActionLink(@item.Title, "Details", "Posts", new { id = item.PostId, slug = item.Slug }, htmlAttributes: new { @class = "my-class" })
+                    <div class="tag">
+                        <ul class="list-inline">
+                            @Html.Partial("~/Views/Tags/_tagPartial.cshtml", item.ListTag.ToList())
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div id="content"><p>@item.Description</p> </div>
+                <span>
+                    <a href=@Url.Action("PersonalPage","Posts",new {id=item.UserId,slug=0 }) class="my-class">
+                        @item.AuthorName
+                    </a>             
+                Posted on: @item.CreateDate</span>
+
+            </div>
+        </div>
+    }
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="text-right">
+        @Html.PagedListPager(Model, page => Url.Action("Details", "Tags", new { page }))
+    </div>
+}
+

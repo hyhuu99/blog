@@ -1,0 +1,41 @@
+﻿
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Users", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="@Url.Action("Create", "Posts")"><span><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:white"></i></span><strong id="text-descri"> New post</strong></a>
+        </li>
+        <li>
+             
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#2B445E;color:white;padding:1em 0 0 0">
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                    Profile
+                </button>
+                <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:#2B445E" >
+                    <a href="@Url.Action("Edit", "Users")" class="dropdown-item"><i class="fa fa-user-circle-o" aria-hidden="true"></i><strong id="text-descri"> Update Profile</strong></a>
+                    <a href=@Url.Action("PersonalPage","Posts") class="dropdown-item">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        <strong id="text-descri"> Personal page</strong></a>
+                </div>
+         
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()" id="text-descri">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+             @Html.ActionLink("Register", "Register", "Users", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "ui green button"})
+        </li>
+        <li>
+             @Html.ActionLink("Log in", "Login", "Users", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "ui inverted basic button" })
+        </li>
+    </ul>
+}

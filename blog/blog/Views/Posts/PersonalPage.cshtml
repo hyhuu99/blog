@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<blog.Models.PostVM.PostIndexVM>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Personal Page";
+}
+
+<div class="row">
+    <div class="new-post">
+        <h4 class="caption" style="font-size:2em">
+            <span>
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                @ViewBag.DisplayName
+            </span>
+
+        </h4>
+    </div>
+    @foreach (var item in Model)
+    {
+
+        <div class="content">
+            <!-- Item -->
+            <div class="container-custom">
+
+                <img src="@item.ImageUser" class="ui main avatar image" style="float:left;margin-top:0.8em;width:3em;height:3em" />
+                <div class="header">
+                    @Html.ActionLink(@item.Title, "Details", "Posts", new { id = item.PostId, slug = item.Slug }, htmlAttributes: new { @class = "my-class" })
+                    <div class="tag">
+                        <ul class="list-inline">
+                            @Html.Partial("~/Views/Tags/_tagPartial.cshtml", item.ListTag.ToList())
+                            @if (item.IsMySelf)
+                            {
+                                @Html.ActionLink(
+                             "Delete",
+                             "Delete", "Posts", new { id = item.PostId, slug = item.Slug },
+                              new { onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "ui primary button", @style = "float:right" })
+                                @Html.ActionLink("Edit", "Edit", "Posts", new { id = item.PostId, slug = item.Slug }, htmlAttributes: new { @class = "ui button", @style = "float: right" })
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div id="content"><p>@item.Description</p> </div>
+                <span>Posted on: @item.CreateDate</span>
+
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="text-right">
+        @Html.PagedListPager(Model, page => Url.Action("PersonalPage", "Posts", new { page }))
+    </div>
+}
+
+
+

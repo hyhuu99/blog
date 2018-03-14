@@ -1,0 +1,12 @@
+﻿@model List<blog.Models.TagVM>
+
+@foreach (var itemList in Model)
+{
+    <li>   
+        <a href=@Url.Action("Details","Tags",new { id=itemList.TagId,slug=itemList.SlugTag}) class="ui label" id="ui-label" style="height:1.9em"> @itemList.Name
+            <strong>
+                @itemList.Frequency
+            </strong>
+        </a>      
+    </li>
+}
